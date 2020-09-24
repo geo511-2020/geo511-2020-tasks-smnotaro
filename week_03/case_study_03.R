@@ -12,7 +12,7 @@ plot_lifeExp <- ggplot(gap_no_Kuwait, aes(lifeExp, gdpPercap, color = continent,
   theme(plot.title = element_text(size = 24)) +
   labs(title = "Wealth and life expectancy through time", x = "Life Expectancy", 
        y = "GDP per capita", size = "Population (100k)", color = "Continent")
-ggsave(filename = "Life_Exp_Week_3", device = "png", width = 15, units = c("in"))
+ggsave(filename = "Life_Exp_Week_3.png", device = "png", width = 15, units = c("in"))
 print(plot_lifeExp)
 
 #Learned code on how to change legend titles for specific legens from https://cmdlinetips.com/2019/10/how-to-change-legend-title-in-ggplot2/
@@ -32,7 +32,7 @@ plot_continents <- ggplot(gap_no_Kuwait, aes(year, gdpPercap, color = continent)
                                                               size = pop/100000)) +
   facet_wrap(~continent, nrow = 1) + theme_bw() + labs(x = "Year", y = "GDP per capita", 
                                                        size = "Population (100k)")
-ggsave(filename = "Continents_Week_3", device = "png", width = 15, units = c("in"))
+ggsave(filename = "Continents_Week_3.png", device = "png", width = 15, units = c("in"))
 print(plot_continents)
 
 #Got help with plotting the black lines from Tina
