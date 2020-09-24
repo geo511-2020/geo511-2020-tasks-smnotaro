@@ -1,1 +1,5 @@
+I found the filter() function to be very useful to look at just a certain part of your data very easily. When there is a large data set, minimizing it to one or just a few conditions makes it much easier to handle data. 
  
+Also, scale_x_log10() and scale_y_log10() are great to easily set the x and y axes to log scale. In Excel, it can be kind of annoying to find where to set an axis to log scale if you don't know where to look, so I find these functions to be much more efficient.
+ 
+Lastly, aes() is such a great function to easily plot certain information on plots. I think with how it automatically recognizes the first and second positions to be x and y, it makes if efficient not having to type x = ___ and y = ___. In addition, being able to plot certain aesthetics like color, size, and alpha within aes() allows designing plots easy to do.
