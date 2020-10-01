@@ -1,10 +1,12 @@
 library(tidyverse)
 library(nycflights13)
 
-view(airports)
-view(planes)
-view(weather)
-view(flights)
+#Viewing tables
+#view(airports)
+#view(planes)
+#view(weather)
+#view(flights)
+#view(airlines)
 
 #Looking at only origin, dest, and distance in flights
 flights_minimal <- flights %>%
