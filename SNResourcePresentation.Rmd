@@ -44,7 +44,7 @@ labs(x = "Number of Cylinders", y = "Miles per Gallon")
 p
 ```
 
-## `geom_stripchart()` Example Plotted
+## `geom_stripchart()` Example Plot
 ```{r stripchart, echo = FALSE, eval = TRUE, warning=F}
 ```
 
@@ -62,7 +62,7 @@ labs(x = "Number of Cylinders", y = "Miles per Gallon")
 q
 ```
 
-## `stat_n_text()` Example Plotted
+## `stat_n_text()` Example Plot
 ```{r text, echo = FALSE, eval = TRUE, message=F}
 ```
 
@@ -80,6 +80,6 @@ labs(x = "Number of Cylinders", y = "Miles per Gallon")
 r
 ```
 
-## `stat_mean_sd_text()` Example Plotted
+## `stat_mean_sd_text()` Example Plot
 ```{r meansd, echo = FALSE, eval = TRUE, message=F}
 ```
