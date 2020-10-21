@@ -73,3 +73,13 @@ r
 
 ## `stat_mean_sd_text()` Example Plot
 ![](SNResourcePresentation_files/figure-revealjs/meansd-1.png)
+
+## `geom_stripchart()` Arguments
+|Argument          | Description
+|------------------|-------------------------------------------------------
+|`stat`            | The statistical transformation to use on the data for this layer
+|`position`        | The position adjustment to use for overlapping points on this layer
+|`paired`          | For the case of two groups, a logical scalar indicating whether the data should be considered to be paired
+|`paired.lines`    | For the case when there are two groups and the observations are paired, a logical scalar indicating whether to draw the lines between the paired observations
+|`location`        | A character string indicating whether to display the mean for each group
+|`text.box`        | Logical scalar indicating whether to surround the text with a text box
