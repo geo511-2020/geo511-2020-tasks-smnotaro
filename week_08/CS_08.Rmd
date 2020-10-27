@@ -1,0 +1,45 @@
+---
+title: "Carbon Dioxide Concentrations at Mona Loa Observatory"
+author: Sandra Notaro
+date: 10/26/2020
+output:
+  html_document: default
+  github_document: default
+  powerpoint_presentation: default
+  word_document: default
+---
+
+# Annual Mean Carbon Dioxide Concentrations 1959-Present
+
+```{r echo=F, eval=T, message=F}
+library(tidyverse)
+CO2 <- read_table("ftp://aftp.cmdl.noaa.gov/products/trends/co2/co2_annmean_mlo.txt", skip = 56)
+```
+
+```{r plot, echo = F, eval = T}
+plot <- ggplot(CO2, aes(year, mean)) + geom_line(size = 2, color = "red") + labs(x = "Year", y = "Mauna Loa Annual Mean CO_2 (ppm)")
+print(plot)
+```
+
+# Top Five Annual Mean Carbon Dioxide Concentrations at Mona Loa
+```{r echo=F, eval=T, message=F}
+library(knitr)
+library(dplyr)
+descCO2 <- CO2 %>%
+  arrange(desc(CO2))
+```
+
+```{r table, echo = F, eval = T}
+kable(descCO2[1:5, 2:3])
+```
+
+```{r echo=F, eval=T, message=F}
+rmarkdown::render("CS_08.Rmd", output_format = "all")
+```
+
+```{r echo=F, eval=T, message=F}
+library(kableExtra)
+data %>%
+  kable() %>%
+  as_image(width = 10,file = "table.png")
+```
