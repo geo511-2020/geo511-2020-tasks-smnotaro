@@ -35,4 +35,4 @@ descCO2 <- CO2 %>%
 knitr::kable(descCO2[1:5, 2:3], "simple")
 ```
 
-## Tina and Betsy helped me make my table look properly by combining different ideas
+### Tina and Betsy helped me make my table look properly by combining different ideas
