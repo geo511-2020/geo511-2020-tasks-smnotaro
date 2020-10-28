@@ -23,23 +23,16 @@ print(plot)
 
 # Top Five Annual Mean Carbon Dioxide Concentrations at Mona Loa
 ```{r echo=F, eval=T, message=F}
-library(knitr)
 library(dplyr)
+library(kableExtra)
+library(magick)
+library(knitr)
 descCO2 <- CO2 %>%
   arrange(desc(CO2))
 ```
 
 ```{r table, echo = F, eval = T}
-kable(descCO2[1:5, 2:3])
+knitr::kable(descCO2[1:5, 2:3], "simple")
 ```
 
-```{r echo=F, eval=T, message=F}
-rmarkdown::render("CS_08.Rmd", output_format = "all")
-```
-
-```{r echo=F, eval=T, message=F}
-library(kableExtra)
-data %>%
-  kable() %>%
-  as_image(width = 10,file = "table.png")
-```
+## Tina and Betsy helped me make my table look properly by combining different ideas
