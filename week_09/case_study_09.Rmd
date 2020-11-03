@@ -18,12 +18,12 @@ data(us_states)
 library(dplyr)
 ```
 
-``````{r prep2, eval=T, echo=T, warning=F, message=F}
+```{r prep2, eval=T, echo=T}
 dataurl="https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/shapefile/IBTrACS.NA.list.v04r00.points.zip"
 tdir=tempdir()
 download.file(dataurl,destfile=file.path(tdir,"temp.zip"))
 unzip(file.path(tdir,"temp.zip"),exdir = tdir)
-list.files(tdir)
+#list.files(tdir)
 storm_data <- read_sf(list.files(tdir,pattern=".shp",full.names = T))
 ```
 
@@ -65,7 +65,7 @@ storm_states <- st_join(filtered_1950_present, state, join = st_intersects,left 
 ```
 
 # Making the table
-```{r table prep, echo = F, eval=T}
+```{r table prep, echo = F, eval=T, message= F, warning=F}
 table <- storm_states %>%
   group_by(state) %>%
   summarize(filtered_1950_present =length(unique(NAME))) %>%
@@ -74,7 +74,7 @@ table <- storm_states %>%
   st_set_geometry(NULL)
 ```
 
-``` {r table, echo = F, eval = T, warning = F, messgae = F}
+``` {r table, echo = F, eval = T}
 knitr::kable(table, "simple")
 ```
 

@@ -10,14 +10,7 @@ dataurl="https://www.ncei.noaa.gov/data/international-best-track-archive-for-cli
 tdir=tempdir()
 download.file(dataurl,destfile=file.path(tdir,"temp.zip"))
 unzip(file.path(tdir,"temp.zip"),exdir = tdir)
-list.files(tdir)
-```
-
-    ## [1] "IBTrACS.NA.list.v04r00.points.dbf" "IBTrACS.NA.list.v04r00.points.prj"
-    ## [3] "IBTrACS.NA.list.v04r00.points.shp" "IBTrACS.NA.list.v04r00.points.shx"
-    ## [5] "temp.zip"
-
-``` r
+#list.files(tdir)
 storm_data <- read_sf(list.files(tdir,pattern=".shp",full.names = T))
 ```
 
@@ -51,7 +44,7 @@ storm_states <- st_join(filtered_1950_present, state, join = st_intersects,left 
 
 # Making the table
 
-    ## `summarise()` ungrouping output (override with `.groups` argument)
+    `summarise()` ungrouping output (override with `.groups` argument)
 
 | state          | filtered\_1950\_present |
 | :------------- | ----------------------: |
