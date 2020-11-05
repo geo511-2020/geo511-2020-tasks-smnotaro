@@ -44,8 +44,6 @@ storm_states <- st_join(filtered_1950_present, state, join = st_intersects,left 
 
 # Making the table
 
-    `summarise()` ungrouping output (override with `.groups` argument)
-
 | state          | filtered\_1950\_present |
 | :------------- | ----------------------: |
 | Florida        |                      82 |
