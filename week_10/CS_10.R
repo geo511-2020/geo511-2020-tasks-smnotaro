@@ -6,6 +6,7 @@ library(ggmap)
 library(tidyverse)
 library(knitr)
 library(ncdf4)
+library(stats)
 
 dir.create("data",showWarnings = F)
 
@@ -112,3 +113,49 @@ lst_final_plot <- ggplot(renamed_df, aes(date, temp)) + geom_point() +
   theme(axis.title = element_text(size = 20))
 lst_final_plot
 # Learned how to use span and n from https://ggplot2.tidyverse.org/reference/geom_smooth.html
+
+
+# Summarizing Weekly Data to Monthly Climatologies
+tmonth <- as.numeric(format(getZ(lst),"%m"))
+
+## Summarizing the Mean Value
+lst_month <- stackApply(lst, tmonth, fun = mean)
+# Tina helped with the stackApply() step
+
+names(lst_month) = month.name
+
+## Plotting the Map for Each Month
+month_plot <- gplot(lst_month) + geom_raster(aes(fill = value)) + facet_wrap(~variable) + 
+  scale_fill_gradient2(low = "red", mid = "white", 
+                       high = "blue", midpoint = 15) + coord_equal() + 
+  theme(axis.text = element_blank())
+month_plot
+# Tina sent me https://ggplot2.tidyverse.org/reference/scale_gradient.html to know how to
+# color the facets
+
+## Finding Monthly Mean
+monthly_mean <- cellStats(lst_month, mean)
+knitr::kable(monthly_mean, "simple")
+
+# Summarizing Land Surface Temperature by Land Cover
+resampling <- resample(lulc, lst, method = "ngb")
+
+## Extracting Values
+lcds1 = cbind.data.frame(
+  values(lst_month),
+  ID = values(resampling[[1]])) %>%
+  na.omit()
+
+## Gathering the Data into a Tidy Format
+gathering <- gather(lcds1, key = "month", value = "value", -ID)
+
+## Convering ID to Numeric and Month to an Ordered Factor
+id_month <- gathering %>%
+  mutate(ID = as.numeric(ID)) %>%
+  mutate(month = factor(month, levels = month.name, ordered=T))
+
+## Left Join
+join_lcd <- left_join(id_month, lcd)
+
+
+
