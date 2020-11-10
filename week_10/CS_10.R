@@ -157,5 +157,20 @@ id_month <- gathering %>%
 ## Left Join
 join_lcd <- left_join(id_month, lcd)
 
+## Filtering
+filtered_lcd <- join_lcd %>% 
+  filter(landcover %in% c("Urban & built-up","Deciduous Broadleaf forest"))
 
+## Illustrating the Monthly Variability in Land Surface Temperature
+variability_plot <- ggplot(filtered_lcd, aes(month, value))+ facet_wrap(~landcover) +
+  geom_point(alpha=.5, position = "jitter") +
+  geom_smooth() +
+  geom_violin(alpha = .5, col = "red", scale = "width",position = "dodge")+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+  ylab("Monthly Mean Land Surface Temperature (C)")+
+  xlab("Month")+
+  ggtitle("Land Surface Temperature in Urban and Forest areas in Buffalo, NY") + 
+  theme(axis.title = element_text(size = 16), axis.text = element_text(size = 12), 
+        plot.title = element_text(size = 20))
+variability_plot
 
