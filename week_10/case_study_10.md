@@ -1,23 +1,11 @@
----
-title: "Case Study 10"
-author: Sandra Notaro
-date: November 6, 2020
-output: github_document
----
+Case Study 10
+================
+Sandra Notaro
+November 6, 2020
 
 # Preparing the Data
-```{r prep, eval=T, echo=F, message=F, cache = T}
-library(raster)
-library(rasterVis)
-library(rgdal)
-library(ggmap)
-library(tidyverse)
-library(knitr)
-library(ncdf4)
-library(stats)
-```
 
-```{r prep2, eval=T, echo=T, message=F, warning = F, cache = T}
+``` r
 dir.create("data",showWarnings = F)
 
 lulc_url="https://github.com/adammwilson/DataScienceData/blob/master/inst/extdata/appeears/MCD12Q1.051_aid0001.nc?raw=true"
@@ -28,24 +16,73 @@ download.file(lst_url,destfile="data/MOD11A2.006_aid0001.nc", mode="wb")
 ```
 
 # Loading the data into R
-```{r load, eval=T, echo=T, message=F, warning = F, cache = T}
+
+``` r
 lulc = stack("data/MCD12Q1.051_aid0001.nc",varname="Land_Cover_Type_1")
+```
+
+    FALSE [1] ">>>> WARNING <<<  attribute latitude_of_projection_origin is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    FALSE [1] ">>>> WARNING <<<  attribute longitude_of_central_meridian is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    FALSE [1] ">>>> WARNING <<<  attribute longitude_of_projection_origin is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    FALSE [1] ">>>> WARNING <<<  attribute straight_vertical_longitude_from_pole is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    FALSE [1] ">>>> WARNING <<<  attribute false_easting is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    FALSE [1] ">>>> WARNING <<<  attribute false_northing is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+
+``` r
 lst = stack("data/MOD11A2.006_aid0001.nc",varname="LST_Day_1km")
 ```
 
+    FALSE [1] ">>>> WARNING <<<  attribute latitude_of_projection_origin is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    FALSE [1] ">>>> WARNING <<<  attribute longitude_of_central_meridian is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    FALSE [1] ">>>> WARNING <<<  attribute longitude_of_projection_origin is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    FALSE [1] ">>>> WARNING <<<  attribute straight_vertical_longitude_from_pole is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    FALSE [1] ">>>> WARNING <<<  attribute false_easting is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    FALSE [1] ">>>> WARNING <<<  attribute false_northing is an 8-byte value, but R"
+    FALSE [1] "does not support this data type. I am returning a double precision"
+    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+
 # Plotting All of the Land Use Land Cover Data
-```{r plotall, eval=T, echo=T, message=F, cache = T}
+
+``` r
 plot(lulc)
 ```
 
+![](case_study_10_files/figure-gfm/plotall-1.png)<!-- -->
+
 # Plotting the Land Use Land Cover 2013 Data
-```{r plotland, eval=T, echo=T, message=F, cache = T}
+
+``` r
 lulc = lulc[[13]]
 plot(lulc)
 ```
 
+![](case_study_10_files/figure-gfm/plotland-1.png)<!-- -->
+
 # Processing the Land Cover Data
-```{r process, eval=T, echo=T, message=F, cache = T}
+
+``` r
 Land_Cover_Type_1 = c(
   Water = 0, 
   `Evergreen Needleleaf forest` = 1, 
@@ -74,19 +111,30 @@ lcd=data.frame(
   stringsAsFactors = F)
 ```
 
-```{r headlcd, eval=T, echo=T, message=F, cache = T}
+``` r
 kable(head(lcd))
 ```
 
+|                             | ID | landcover                   | col      |
+| :-------------------------- | -: | :-------------------------- | :------- |
+| Water                       |  0 | Water                       | \#000080 |
+| Evergreen Needleleaf forest |  1 | Evergreen Needleleaf forest | \#008000 |
+| Evergreen Broadleaf forest  |  2 | Evergreen Broadleaf forest  | \#00FF00 |
+| Deciduous Needleleaf forest |  3 | Deciduous Needleleaf forest | \#99CC00 |
+| Deciduous Broadleaf forest  |  4 | Deciduous Broadleaf forest  | \#99FF99 |
+| Mixed forest                |  5 | Mixed forest                | \#339966 |
+
 # Converting the Land Use Land Cover Raster into a Categorical Raster
-```{r convert, eval=T, echo=T, message=F, cache = T}
+
+``` r
 lulc = as.factor(lulc)
 
 levels(lulc) = left_join(levels(lulc)[[1]],lcd)
 ```
 
 # Plotting the Converted Raster
-```{r plotconvert, eval=T, echo=T, message=F, cache = T, warning = F}
+
+``` r
 gplot(lulc)+
   geom_raster(aes(fill = as.factor(value)))+
   scale_fill_manual(values=levels(lulc)[[1]]$col,
@@ -97,20 +145,34 @@ gplot(lulc)+
   guides(fill = guide_legend(ncol=1, byrow=TRUE))
 ```
 
+![](case_study_10_files/figure-gfm/plotconvert-1.png)<!-- -->
+
 # Observing Land Surface Temperature
-```{r obslst, eval=T, echo=T, message=F, cache = T}
+
+``` r
 plot(lst[[1:12]])
 ```
 
+![](case_study_10_files/figure-gfm/obslst-1.png)<!-- -->
+
 # Converting Land Surface Temperature from Kelvin to Celcius
-```{r ktoc, eval=T, echo=T, message=F, cache = T}
+
+``` r
 offs(lst) = -273.15
 plot(lst[[1:10]])
 ```
 
+![](case_study_10_files/figure-gfm/ktoc-1.png)<!-- -->
+
 # Adding Dates to Time (z) Dimension
-```{r zdim, eval=T, echo=T, message=F, cache = T}
+
+``` r
 names(lst)[1:5]
+```
+
+    ## [1] "X2000.02.18" "X2000.02.26" "X2000.03.05" "X2000.03.13" "X2000.03.21"
+
+``` r
 tdates = names(lst)%>%
   sub(pattern = "X", replacement = "")%>%
   as.Date("%Y.%m.%d")
@@ -120,31 +182,37 @@ lst = setZ(lst,tdates)
 ```
 
 # Extracting Timeseries for a Point
+
 ## Defining a new spatial point at that location
-```{r definepoint, eval=T, echo=T, message=F, cache = T}
+
+``` r
 lw = SpatialPoints(data.frame(x = -78.791547, y = 43.007211))
 ```
 
 ## Setting the projection
-```{r projection, eval=T, echo=T, message=F, cache = T}
+
+``` r
 projection(lw) <- "+proj=longlat"
 lw_transf <- spTransform(lw, "+proj=longlat")
 ```
 
 ## Extracting and Transposing the Land Surface Temperature Data
-```{r extracttranspose, eval=T, echo=T, message=F, cache = T, warning = F}
+
+``` r
 extract_lst <- raster::extract(lst, lw, buffer = 1000, fun = mean, na.rm=T)
 transpose_lst <- t(extract_lst)
 ```
 
 ## Extracting the Dates and Combining Them Into a Data Frame with Extracted LST Data
-```{r dates, eval=T, echo=T, message=F, cache = T}
+
+``` r
 extract_dates <- getZ(lst)
 combined_df <- bind_cols(transpose_lst, extract_dates)
 ```
 
 ## Plotting Land Surface Temperature
-```{r ggplotlst, eval=T, echo=T, message=F, warning = F, comment = F, cache = T}
+
+``` r
 renamed_df <- combined_df %>%
   rename(date = ...2, temp = ...1)
 lst_final_plot <- ggplot(renamed_df, aes(date, temp)) + geom_point() + 
@@ -153,62 +221,83 @@ lst_final_plot <- ggplot(renamed_df, aes(date, temp)) + geom_point() +
   theme(axis.title = element_text(size = 18))
 ```
 
-```{r lstfinalplot, echo = F, eval = T, cache = T}
-print(lst_final_plot)
-```
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-### Learned how to use span and n from https://ggplot2.tidyverse.org/reference/geom_smooth.html
+    ## Warning: Removed 82 rows containing non-finite values (stat_smooth).
 
+    ## Warning: Removed 82 rows containing missing values (geom_point).
+
+![](case_study_10_files/figure-gfm/lstfinalplot-1.png)<!-- -->
+
+### Learned how to use span and n from <https://ggplot2.tidyverse.org/reference/geom_smooth.html>
 
 # Summarizing Weekly Data to Monthly Climatologies
-```{r sumdata, eval=T, echo=T, message=F, cache = T}
+
+``` r
 tmonth <- as.numeric(format(getZ(lst),"%m"))
 ```
 
 ## Summarizing the Mean Value
-```{r summean, eval=T, echo=T, message=F, cache = T}
+
+``` r
 lst_month <- stackApply(lst, tmonth, fun = mean)
 ```
 
 ### Tina helped with the stackApply() step
 
-
-
 ## Setting Names of the Layers to Months
-```{r namemonths, eval=T, echo=T, message=F, cache = T}
+
+``` r
 names(lst_month) = month.name
 ```
 
 ## Plotting the Map for Each Month
-```{r plotmonths, eval=T, echo=T, message=F, cache = T}
+
+``` r
 month_plot <- gplot(lst_month) + geom_raster(aes(fill = value)) + facet_wrap(~variable) +
   scale_fill_gradient2(low = "red", mid = "white", 
                        high = "blue", midpoint = 15) + coord_equal() + 
   theme(axis.text = element_blank())
 ```
 
-```{r monthplot, echo = F, eval = T, cache = T}
-print(month_plot)
-```
+![](case_study_10_files/figure-gfm/monthplot-1.png)<!-- -->
 
-### Tina sent me https://ggplot2.tidyverse.org/reference/scale_gradient.html to know how to color the facets
+### Tina sent me <https://ggplot2.tidyverse.org/reference/scale_gradient.html> to know how to color the facets
 
 ## Finding Monthly Mean
-```{r monthlymean, eval=T, echo=T, message=F, cache = T}
+
+``` r
 monthly_mean <- cellStats(lst_month, mean)
 ```
 
-```{r monthmeantable, echo = T, eval = T, cache = T}
+``` r
 knitr::kable(monthly_mean, "simple")
 ```
 
+|           |          x |
+| --------- | ---------: |
+| January   | \-2.127506 |
+| February  |   8.710271 |
+| March     |  18.172077 |
+| April     |  23.173591 |
+| May       |  26.990005 |
+| June      |  28.840144 |
+| July      |  27.358260 |
+| August    |  22.927727 |
+| September |  15.477510 |
+| October   |   8.329881 |
+| November  |   0.586179 |
+| December  | \-4.754134 |
+
 # Summarizing Land Surface Temperature by Land Cover
-```{r resample, eval=T, echo=T, message=F, cache = T}
+
+``` r
 resampling <- resample(lulc, lst, method = "ngb")
 ```
 
 ## Extracting Values
-```{r extractvalues, eval=T, echo=T, message=F, cache = T}
+
+``` r
 lcds1 = cbind.data.frame(
   values(lst_month),
   ID = values(resampling[[1]])) %>%
@@ -216,30 +305,35 @@ lcds1 = cbind.data.frame(
 ```
 
 ## Gathering the Data into a Tidy Format
-```{r tidyformat, eval=T, echo=T, message=F, cache = T}
+
+``` r
 gathering <- gather(lcds1, key = "month", value = "value", -ID)
 ```
 
 ## Converting ID to Numeric and Month to an Ordered Factor
-```{r convertid, eval=T, echo=T, message=F, cache = T}
+
+``` r
 id_month <- gathering %>%
   mutate(ID = as.numeric(ID)) %>%
   mutate(month = factor(month, levels = month.name, ordered=T))
 ```
 
 ## Left Join
-```{r leftjoin, eval=T, echo=T, message=F, cache = T}
+
+``` r
 join_lcd <- left_join(id_month, lcd)
 ```
 
 ## Filtering
-```{r filtering, eval=T, echo=T, message=F, cache = T}
+
+``` r
 filtered_lcd <- join_lcd %>% 
   filter(landcover %in% c("Urban & built-up","Deciduous Broadleaf forest"))
 ```
 
 ## Illustrating the Monthly Variability in Land Surface Temperature
-```{r gplot, eval=T, echo=T, message=F, comment = F, cache = T}
+
+``` r
 variability_plot <- ggplot(filtered_lcd, aes(month, value))+ facet_wrap(~landcover) +
   geom_point(alpha=.5, position = "jitter") +
   geom_smooth() +
@@ -252,6 +346,6 @@ variability_plot <- ggplot(filtered_lcd, aes(month, value))+ facet_wrap(~landcov
         plot.title = element_text(size = 18))
 ```
 
-```{r gplotprint, echo = F, eval = T, cache = T}
-print(variability_plot)
-```
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+![](case_study_10_files/figure-gfm/gplotprint-1.png)<!-- -->

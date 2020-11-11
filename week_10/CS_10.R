@@ -149,7 +149,7 @@ lcds1 = cbind.data.frame(
 ## Gathering the Data into a Tidy Format
 gathering <- gather(lcds1, key = "month", value = "value", -ID)
 
-## Convering ID to Numeric and Month to an Ordered Factor
+## Converting ID to Numeric and Month to an Ordered Factor
 id_month <- gathering %>%
   mutate(ID = as.numeric(ID)) %>%
   mutate(month = factor(month, levels = month.name, ordered=T))
