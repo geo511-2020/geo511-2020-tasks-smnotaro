@@ -150,7 +150,7 @@ renamed_df <- combined_df %>%
 lst_final_plot <- ggplot(renamed_df, aes(date, temp)) + geom_point() + 
   geom_smooth(span = 0.05, n = 250, se = FALSE) + 
   labs(x = "Date", y = "Monthly Mean Land Surface Temperature") + 
-  theme(axis.title = element_text(size = 18))
+  theme(axis.title = element_text(size = 10))
 ```
 
 ```{r lstfinalplot, echo = F, eval = T, cache = T}
@@ -239,7 +239,7 @@ filtered_lcd <- join_lcd %>%
 ```
 
 ## Illustrating the Monthly Variability in Land Surface Temperature
-```{r gplot, eval=T, echo=T, message=F, comment = F, cache = T}
+```{r lastplot, eval=T, echo=T, message=FALSE, cache=, comment=F}
 variability_plot <- ggplot(filtered_lcd, aes(month, value))+ facet_wrap(~landcover) +
   geom_point(alpha=.5, position = "jitter") +
   geom_smooth() +
@@ -248,10 +248,10 @@ variability_plot <- ggplot(filtered_lcd, aes(month, value))+ facet_wrap(~landcov
   ylab("Monthly Mean Land Surface Temperature (C)")+
   xlab("Month")+
   ggtitle("Land Surface Temperature in Urban and Forest areas in Buffalo, NY") + 
-  theme(axis.title = element_text(size = 16), axis.text = element_text(size = 12), 
-        plot.title = element_text(size = 18))
+  theme(axis.title = element_text(size = 16), axis.text = element_text(size = 12),
+        plot.title = element_text(size = 14))
 ```
 
-```{r gplotprint, echo = F, eval = T, cache = T}
+```{r lastplotprint, echo = F, eval = T, cache = T}
 print(variability_plot)
 ```

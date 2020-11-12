@@ -21,47 +21,47 @@ download.file(lst_url,destfile="data/MOD11A2.006_aid0001.nc", mode="wb")
 lulc = stack("data/MCD12Q1.051_aid0001.nc",varname="Land_Cover_Type_1")
 ```
 
-    FALSE [1] ">>>> WARNING <<<  attribute latitude_of_projection_origin is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
-    FALSE [1] ">>>> WARNING <<<  attribute longitude_of_central_meridian is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
-    FALSE [1] ">>>> WARNING <<<  attribute longitude_of_projection_origin is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
-    FALSE [1] ">>>> WARNING <<<  attribute straight_vertical_longitude_from_pole is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
-    FALSE [1] ">>>> WARNING <<<  attribute false_easting is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
-    FALSE [1] ">>>> WARNING <<<  attribute false_northing is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute latitude_of_projection_origin is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute longitude_of_central_meridian is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute longitude_of_projection_origin is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute straight_vertical_longitude_from_pole is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute false_easting is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute false_northing is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
 
 ``` r
 lst = stack("data/MOD11A2.006_aid0001.nc",varname="LST_Day_1km")
 ```
 
-    FALSE [1] ">>>> WARNING <<<  attribute latitude_of_projection_origin is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
-    FALSE [1] ">>>> WARNING <<<  attribute longitude_of_central_meridian is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
-    FALSE [1] ">>>> WARNING <<<  attribute longitude_of_projection_origin is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
-    FALSE [1] ">>>> WARNING <<<  attribute straight_vertical_longitude_from_pole is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
-    FALSE [1] ">>>> WARNING <<<  attribute false_easting is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
-    FALSE [1] ">>>> WARNING <<<  attribute false_northing is an 8-byte value, but R"
-    FALSE [1] "does not support this data type. I am returning a double precision"
-    FALSE [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute latitude_of_projection_origin is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute longitude_of_central_meridian is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute longitude_of_projection_origin is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute straight_vertical_longitude_from_pole is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute false_easting is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
+    ## [1] ">>>> WARNING <<<  attribute false_northing is an 8-byte value, but R"
+    ## [1] "does not support this data type. I am returning a double precision"
+    ## [1] "floating point, but you must be aware that this could lose precision!"
 
 # Plotting All of the Land Use Land Cover Data
 
@@ -218,7 +218,7 @@ renamed_df <- combined_df %>%
 lst_final_plot <- ggplot(renamed_df, aes(date, temp)) + geom_point() + 
   geom_smooth(span = 0.05, n = 250, se = FALSE) + 
   labs(x = "Date", y = "Monthly Mean Land Surface Temperature") + 
-  theme(axis.title = element_text(size = 18))
+  theme(axis.title = element_text(size = 10))
 ```
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
@@ -342,8 +342,8 @@ variability_plot <- ggplot(filtered_lcd, aes(month, value))+ facet_wrap(~landcov
   ylab("Monthly Mean Land Surface Temperature (C)")+
   xlab("Month")+
   ggtitle("Land Surface Temperature in Urban and Forest areas in Buffalo, NY") + 
-  theme(axis.title = element_text(size = 16), axis.text = element_text(size = 12), 
-        plot.title = element_text(size = 18))
+  theme(axis.title = element_text(size = 16), axis.text = element_text(size = 12),
+        plot.title = element_text(size = 14))
 ```
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
