@@ -17,7 +17,7 @@ library(ncdf4)
 library(stats)
 ```
 
-```{r prep2, eval=T, echo=T, message=F, warning = F, cache = T}
+```{r prep2, eval=T, echo=T, message=F, warning = F, cache = T, results ='hide'}
 dir.create("data",showWarnings = F)
 
 lulc_url="https://github.com/adammwilson/DataScienceData/blob/master/inst/extdata/appeears/MCD12Q1.051_aid0001.nc?raw=true"
@@ -98,7 +98,7 @@ gplot(lulc)+
 ```
 
 # Observing Land Surface Temperature
-```{r obslst, eval=T, echo=T, message=F, cache = T}
+```{r obslst, eval=T, echo=T, message=FALSE, cache=T}
 plot(lst[[1:12]])
 ```
 
@@ -150,14 +150,11 @@ renamed_df <- combined_df %>%
 lst_final_plot <- ggplot(renamed_df, aes(date, temp)) + geom_point() + 
   geom_smooth(span = 0.05, n = 250, se = FALSE) + 
   labs(x = "Date", y = "Monthly Mean Land Surface Temperature") + 
-  theme(axis.title = element_text(size = 10))
-```
-
-```{r lstfinalplot, echo = F, eval = T, cache = T}
+  theme(axis.title = element_text(size = 14))
 print(lst_final_plot)
 ```
 
-### Learned how to use span and n from https://ggplot2.tidyverse.org/reference/geom_smooth.html
+Learned how to use span and n from https://ggplot2.tidyverse.org/reference/geom_smooth.html
 
 
 # Summarizing Weekly Data to Monthly Climatologies
@@ -170,7 +167,7 @@ tmonth <- as.numeric(format(getZ(lst),"%m"))
 lst_month <- stackApply(lst, tmonth, fun = mean)
 ```
 
-### Tina helped with the stackApply() step
+Tina helped with the stackApply() step
 
 
 
@@ -185,13 +182,10 @@ month_plot <- gplot(lst_month) + geom_raster(aes(fill = value)) + facet_wrap(~va
   scale_fill_gradient2(low = "red", mid = "white", 
                        high = "blue", midpoint = 15) + coord_equal() + 
   theme(axis.text = element_blank())
-```
-
-```{r monthplot, echo = F, eval = T, cache = T}
 print(month_plot)
 ```
 
-### Tina sent me https://ggplot2.tidyverse.org/reference/scale_gradient.html to know how to color the facets
+Tina sent me https://ggplot2.tidyverse.org/reference/scale_gradient.html to know how to color the facets
 
 ## Finding Monthly Mean
 ```{r monthlymean, eval=T, echo=T, message=F, cache = T}
@@ -239,7 +233,7 @@ filtered_lcd <- join_lcd %>%
 ```
 
 ## Illustrating the Monthly Variability in Land Surface Temperature
-```{r lastplot, eval=T, echo=T, message=FALSE, cache=, comment=F}
+```{r lastplot, eval=T, echo=T, message=FALSE, cache=T, comment=F}
 variability_plot <- ggplot(filtered_lcd, aes(month, value))+ facet_wrap(~landcover) +
   geom_point(alpha=.5, position = "jitter") +
   geom_smooth() +
@@ -248,10 +242,9 @@ variability_plot <- ggplot(filtered_lcd, aes(month, value))+ facet_wrap(~landcov
   ylab("Monthly Mean Land Surface Temperature (C)")+
   xlab("Month")+
   ggtitle("Land Surface Temperature in Urban and Forest areas in Buffalo, NY") + 
-  theme(axis.title = element_text(size = 16), axis.text = element_text(size = 12),
+  theme(axis.title = element_text(size = 12), axis.text = element_text(size = 12),
         plot.title = element_text(size = 14))
-```
-
-```{r lastplotprint, echo = F, eval = T, cache = T}
 print(variability_plot)
 ```
+
+Worked on the ending of this script with Tina bouncing ideas back and forth

@@ -218,18 +218,14 @@ renamed_df <- combined_df %>%
 lst_final_plot <- ggplot(renamed_df, aes(date, temp)) + geom_point() + 
   geom_smooth(span = 0.05, n = 250, se = FALSE) + 
   labs(x = "Date", y = "Monthly Mean Land Surface Temperature") + 
-  theme(axis.title = element_text(size = 10))
+  theme(axis.title = element_text(size = 14))
+print(lst_final_plot)
 ```
 
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+![](case_study_10_files/figure-gfm/ggplotlst-1.png)<!-- -->
 
-    ## Warning: Removed 82 rows containing non-finite values (stat_smooth).
-
-    ## Warning: Removed 82 rows containing missing values (geom_point).
-
-![](case_study_10_files/figure-gfm/lstfinalplot-1.png)<!-- -->
-
-### Learned how to use span and n from <https://ggplot2.tidyverse.org/reference/geom_smooth.html>
+Learned how to use span and n from
+<https://ggplot2.tidyverse.org/reference/geom_smooth.html>
 
 # Summarizing Weekly Data to Monthly Climatologies
 
@@ -243,7 +239,8 @@ tmonth <- as.numeric(format(getZ(lst),"%m"))
 lst_month <- stackApply(lst, tmonth, fun = mean)
 ```
 
-### Tina helped with the stackApply() step
+Tina helped with the stackApply()
+step
 
 ## Setting Names of the Layers to Months
 
@@ -258,11 +255,14 @@ month_plot <- gplot(lst_month) + geom_raster(aes(fill = value)) + facet_wrap(~va
   scale_fill_gradient2(low = "red", mid = "white", 
                        high = "blue", midpoint = 15) + coord_equal() + 
   theme(axis.text = element_blank())
+print(month_plot)
 ```
 
-![](case_study_10_files/figure-gfm/monthplot-1.png)<!-- -->
+![](case_study_10_files/figure-gfm/plotmonths-1.png)<!-- -->
 
-### Tina sent me <https://ggplot2.tidyverse.org/reference/scale_gradient.html> to know how to color the facets
+Tina sent me
+<https://ggplot2.tidyverse.org/reference/scale_gradient.html> to know
+how to color the facets
 
 ## Finding Monthly Mean
 
@@ -342,10 +342,12 @@ variability_plot <- ggplot(filtered_lcd, aes(month, value))+ facet_wrap(~landcov
   ylab("Monthly Mean Land Surface Temperature (C)")+
   xlab("Month")+
   ggtitle("Land Surface Temperature in Urban and Forest areas in Buffalo, NY") + 
-  theme(axis.title = element_text(size = 16), axis.text = element_text(size = 12),
+  theme(axis.title = element_text(size = 12), axis.text = element_text(size = 12),
         plot.title = element_text(size = 14))
+print(variability_plot)
 ```
 
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+![](case_study_10_files/figure-gfm/lastplot-1.png)<!-- -->
 
-![](case_study_10_files/figure-gfm/gplotprint-1.png)<!-- -->
+Worked on the ending of this script with Tina bouncing ideas back and
+forth
