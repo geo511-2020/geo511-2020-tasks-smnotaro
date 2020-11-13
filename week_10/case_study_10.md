@@ -19,49 +19,8 @@ download.file(lst_url,destfile="data/MOD11A2.006_aid0001.nc", mode="wb")
 
 ``` r
 lulc = stack("data/MCD12Q1.051_aid0001.nc",varname="Land_Cover_Type_1")
-```
-
-    ## [1] ">>>> WARNING <<<  attribute latitude_of_projection_origin is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-    ## [1] ">>>> WARNING <<<  attribute longitude_of_central_meridian is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-    ## [1] ">>>> WARNING <<<  attribute longitude_of_projection_origin is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-    ## [1] ">>>> WARNING <<<  attribute straight_vertical_longitude_from_pole is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-    ## [1] ">>>> WARNING <<<  attribute false_easting is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-    ## [1] ">>>> WARNING <<<  attribute false_northing is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-
-``` r
 lst = stack("data/MOD11A2.006_aid0001.nc",varname="LST_Day_1km")
 ```
-
-    ## [1] ">>>> WARNING <<<  attribute latitude_of_projection_origin is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-    ## [1] ">>>> WARNING <<<  attribute longitude_of_central_meridian is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-    ## [1] ">>>> WARNING <<<  attribute longitude_of_projection_origin is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-    ## [1] ">>>> WARNING <<<  attribute straight_vertical_longitude_from_pole is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-    ## [1] ">>>> WARNING <<<  attribute false_easting is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
-    ## [1] ">>>> WARNING <<<  attribute false_northing is an 8-byte value, but R"
-    ## [1] "does not support this data type. I am returning a double precision"
-    ## [1] "floating point, but you must be aware that this could lose precision!"
 
 # Plotting All of the Land Use Land Cover Data
 

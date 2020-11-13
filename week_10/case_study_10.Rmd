@@ -17,7 +17,7 @@ library(ncdf4)
 library(stats)
 ```
 
-```{r prep2, eval=T, echo=T, message=F, warning = F, cache = T, results ='hide'}
+```{r prep2, eval=T, echo=T, message=F, warning = F, cache = T}
 dir.create("data",showWarnings = F)
 
 lulc_url="https://github.com/adammwilson/DataScienceData/blob/master/inst/extdata/appeears/MCD12Q1.051_aid0001.nc?raw=true"
@@ -28,7 +28,7 @@ download.file(lst_url,destfile="data/MOD11A2.006_aid0001.nc", mode="wb")
 ```
 
 # Loading the data into R
-```{r load, eval=T, echo=T, message=F, warning = F, cache = T}
+```{r load, eval=T, echo=T, message=F, warning = F, results = 'hide', cache = T}
 lulc = stack("data/MCD12Q1.051_aid0001.nc",varname="Land_Cover_Type_1")
 lst = stack("data/MOD11A2.006_aid0001.nc",varname="LST_Day_1km")
 ```
