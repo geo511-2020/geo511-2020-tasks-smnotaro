@@ -1,12 +1,11 @@
----
-title: "Case Study 11"
-author: Sandra Notar
-date: Novemer 16, 2020
-output: github_document
----
+Case Study 11
+================
+Sandra Notar
+Novemer 16, 2020
 
 # Preparing the Data
-```{r prep, eval=T, echo=T, message = F, results = 'hide', cache = T}
+
+``` r
 library(tidyverse)
 library(spData)
 library(sf)
@@ -21,7 +20,8 @@ library(lwgeom)
 ```
 
 # Getting the tidycensus Data
-```{r decennial, eval=T, echo=T, message=F, cache = T}
+
+``` r
 racevars <- c(White = "P005003", 
               Black = "P005004", 
               Asian = "P005006", 
@@ -34,14 +34,20 @@ erie <- get_decennial(geography = "block", variables = racevars,
 ```
 
 # Creating Max Boundaries
-```{r bounds, eval=T, echo=T, message=F, results = 'hide', cache = T}
+
+``` r
 boundaries <- c(xmin=-78.9,xmax=-78.85,ymin=42.888,ymax=42.92)
 cropped <- st_crop(erie, boundaries)
 ```
+
+    ## Warning: attribute variables are assumed to be spatially constant throughout all
+    ## geometries
+
 Got help from Tina how to crop
 
 # Preparing Dot Plot
-```{r filtering, eval=T, echo=T, message=F, cache = T}
+
+``` r
 groups <- as.factor(cropped$variable)
 dotprep <- foreach(i=1:4, .combine = "rbind", .packages = c("tidyverse", "sf")) %dopar% {
   races <- levels(groups)[i]
@@ -52,11 +58,16 @@ cropped %>%
     mutate(variable = races)
 }
 ```
-Tina helped with troubleshooting errors
-Used https://www.rdocumentation.org/packages/foreach/versions/1.5.1/topics/foreach for help on how to use `foreach()`
+
+Tina helped with troubleshooting errors Used
+<https://www.rdocumentation.org/packages/foreach/versions/1.5.1/topics/foreach>
+for help on how to use `foreach()`
 
 # Map
-```{r dotplot, eval=T, echo=T, message=F, cache = T}
+
+``` r
 dotplot <- mapview(dotprep, zcol = "variable", cex = 1, lwd = 0)
 dotplot
 ```
+
+![](case_study_11_files/figure-gfm/dotplot-1.png)<!-- -->
