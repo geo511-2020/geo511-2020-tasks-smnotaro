@@ -54,5 +54,5 @@ max_temp_country_sf %>%
   select(name_long, continent, tmax) %>%
   arrange(desc(tmax)) %>%
   st_set_geometry(NULL)
-#Got a hint how to use top_n() properly from Tina. All I needed was the number 1, I
+#Got a hint how to use top_n() properly from Ting. All I needed was the number 1, I
 #originally thought I had to write 7. I then realized I should use tmax as the wt spot
