@@ -24,8 +24,6 @@ print(plot)
 # Top Five Annual Mean Carbon Dioxide Concentrations at Mona Loa
 ```{r echo=F, eval=T, message=F}
 library(dplyr)
-library(kableExtra)
-library(magick)
 library(knitr)
 descCO2 <- CO2 %>%
   arrange(desc(CO2))
@@ -35,4 +33,4 @@ descCO2 <- CO2 %>%
 knitr::kable(descCO2[1:5, 2:3], "simple")
 ```
 
-### Tina and Betsy helped me make my table look properly by combining different ideas
+### Ting and Betsy helped me make my table look properly by combining different ideas
