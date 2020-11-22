@@ -43,6 +43,6 @@ print(final_map)
 border_area <- st_area(NY_and_Canada) %>%
   set_units(km^2)
 print(border_area)
-#Got script on how to pipe from Tina
+#Got script on how to pipe from Ting
 
 ggsave(filename = "New York Land within 10km.png", device = "png")
