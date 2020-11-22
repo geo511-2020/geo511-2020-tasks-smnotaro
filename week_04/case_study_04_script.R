@@ -24,4 +24,4 @@ focus_far <- join_dest[[1,4]]
 print(focus_far)
 
 #Got inner join to work with help from Bhavana
-#Got help to to choose what column and row to look at with help from Tina
+#Got help to to choose what column and row to look at with help from Ting
