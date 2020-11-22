@@ -1,7 +1,7 @@
 Case Study 11
 ================
-Sandra Notar
-Novemer 16, 2020
+Sandra Notaro
+November 16, 2020
 
 # Preparing the Data
 
@@ -17,6 +17,7 @@ registerDoParallel(4)
 getDoParWorkers()
 library(tidycensus)
 library(lwgeom)
+library(htmltools)
 ```
 
 # Getting the tidycensus Data
@@ -43,7 +44,7 @@ cropped <- st_crop(erie, boundaries)
     ## Warning: attribute variables are assumed to be spatially constant throughout all
     ## geometries
 
-Got help from Tina how to crop
+Got help from Ting how to crop
 
 # Preparing Dot Plot
 
@@ -59,7 +60,7 @@ cropped %>%
 }
 ```
 
-Tina helped with troubleshooting errors Used
+Ting helped with troubleshooting errors Used
 <https://www.rdocumentation.org/packages/foreach/versions/1.5.1/topics/foreach>
 for help on how to use `foreach()`
 

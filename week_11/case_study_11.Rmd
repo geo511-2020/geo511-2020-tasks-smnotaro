@@ -1,8 +1,10 @@
 ---
 title: "Case Study 11"
-author: Sandra Notar
-date: Novemer 16, 2020
+author: Sandra Notaro
+date: November 16, 2020
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 # Preparing the Data
@@ -18,6 +20,7 @@ registerDoParallel(4)
 getDoParWorkers()
 library(tidycensus)
 library(lwgeom)
+library(htmltools)
 ```
 
 # Getting the tidycensus Data
@@ -38,7 +41,7 @@ erie <- get_decennial(geography = "block", variables = racevars,
 boundaries <- c(xmin=-78.9,xmax=-78.85,ymin=42.888,ymax=42.92)
 cropped <- st_crop(erie, boundaries)
 ```
-Got help from Tina how to crop
+Got help from Ting how to crop
 
 # Preparing Dot Plot
 ```{r filtering, eval=T, echo=T, message=F, cache = T}
@@ -52,11 +55,11 @@ cropped %>%
     mutate(variable = races)
 }
 ```
-Tina helped with troubleshooting errors
+Ting helped with troubleshooting errors
 Used https://www.rdocumentation.org/packages/foreach/versions/1.5.1/topics/foreach for help on how to use `foreach()`
 
 # Map
-```{r dotplot, eval=T, echo=T, message=F, cache = T}
+```{r dotplot, eval=T, echo=T, message=F, as.is=T, cache = T}
 dotplot <- mapview(dotprep, zcol = "variable", cex = 1, lwd = 0)
 dotplot
 ```
