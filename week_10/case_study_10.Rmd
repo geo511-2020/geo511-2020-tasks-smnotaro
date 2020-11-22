@@ -167,7 +167,7 @@ tmonth <- as.numeric(format(getZ(lst),"%m"))
 lst_month <- stackApply(lst, tmonth, fun = mean)
 ```
 
-Tina helped with the stackApply() step
+Ting helped with the stackApply() step
 
 
 
@@ -185,7 +185,7 @@ month_plot <- gplot(lst_month) + geom_raster(aes(fill = value)) + facet_wrap(~va
 print(month_plot)
 ```
 
-Tina sent me https://ggplot2.tidyverse.org/reference/scale_gradient.html to know how to color the facets
+Ting sent me https://ggplot2.tidyverse.org/reference/scale_gradient.html to know how to color the facets
 
 ## Finding Monthly Mean
 ```{r monthlymean, eval=T, echo=T, message=F, cache = T}
@@ -247,4 +247,4 @@ variability_plot <- ggplot(filtered_lcd, aes(month, value))+ facet_wrap(~landcov
 print(variability_plot)
 ```
 
-Worked on the ending of this script with Tina bouncing ideas back and forth
+Worked on the ending of this script with Ting bouncing ideas back and forth
