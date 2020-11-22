@@ -15,7 +15,7 @@ plot_lifeExp <- ggplot(gap_no_Kuwait, aes(lifeExp, gdpPercap, color = continent,
 ggsave(filename = "Life_Exp_Week_3.png", device = "png", width = 15, units = c("in"))
 print(plot_lifeExp)
 
-#Learned code on how to change legend titles for specific legens from https://cmdlinetips.com/2019/10/how-to-change-legend-title-in-ggplot2/
+#Learned code on how to change legend titles for specific legends from https://cmdlinetips.com/2019/10/how-to-change-legend-title-in-ggplot2/
 
 
 #Second plot
@@ -35,4 +35,4 @@ plot_continents <- ggplot(gap_no_Kuwait, aes(year, gdpPercap, color = continent)
 ggsave(filename = "Continents_Week_3.png", device = "png", width = 15, units = c("in"))
 print(plot_continents)
 
-#Got help with plotting the black lines from Tina
+#Got help with plotting the black lines from Ting
