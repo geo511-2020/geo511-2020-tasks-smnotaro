@@ -1,1 +1,4 @@
- 
+When looking at the HTML Widgets page, I noticed that leaflet is on there, which I'm already using for my project. Using leaflet is the major focus of my project.
+I noticed DT, which I think could be useful for the students in the sustainable methods lab to explore interactive data tables insted of the typical static tables they're used to. I might be able to use this table for the DEC sites since that information is easily readable in table format.
+If I had more time, I think timevis could have been useful to show the history of when certain hazardous sites were active. I do have personal data that I have collected to make this, but that is just too much for this project for now.
+I learned my lesson recently that it is very hard to make spatial data about income and race graphically. I just tried this for another lab I was trying to write. So, for the widgets that are for graphs, I'm struggling to think of how I could use them in my final project.
