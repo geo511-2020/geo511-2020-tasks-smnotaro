@@ -2,7 +2,7 @@
 title: "Case Study 12"
 author: Sandra Notaro
 date: November 25, 2020
-output: github_document
+output: html_document
 ---
 
 # Preparing the Data
