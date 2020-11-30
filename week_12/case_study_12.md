@@ -1,12 +1,11 @@
----
-title: "Case Study 12"
-author: Sandra Notaro
-date: November 25, 2020
-output: github_document
----
+Case Study 12
+================
+Sandra Notaro
+November 25, 2020
 
 # Preparing the Data
-```{r prep, eval=T, echo=T, message=F, cache = T}
+
+``` r
 library(dplyr)
 library(ggplot2)
 library(ggmap)
@@ -19,7 +18,8 @@ library(dygraphs)
 ```
 
 # Downloading the Daily Weather Data
-```{r weather, eval=T, echo=T, message=F, results='hide', cache = T}
+
+``` r
 d <- meteo_tidy_ghcnd("USW00014733",
                    date_min = "2016-01-01", 
                    var = c("TMAX"),
@@ -29,12 +29,16 @@ d <- meteo_tidy_ghcnd("USW00014733",
 ```
 
 # Converting d Into an `xts` Time Series
-```{r convert, eval=T, echo=T, message=F, results='hide', cache = T}
+
+``` r
 d_time_series <- xts(d$tmax, order.by = d$date)
 ```
 
 # Plot
-```{r plot, eval=T, echo=T, message=FALSE, cache=T}
+
+``` r
 dygraph(d_time_series, main = "Daily Maximum Temperature in Buffalo, NY") %>%
   dyRangeSelector(dateWindow = c("2020-01-01", "2020-10-31"))
 ```
+
+![](case_study_12_files/figure-gfm/plot-1.png)<!-- -->
