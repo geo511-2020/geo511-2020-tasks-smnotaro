@@ -36,5 +36,7 @@ d_time_series <- xts(d$tmax, order.by = d$date)
 # Plot
 ```{r plot, eval=T, echo=T, message=FALSE, cache=T}
 dygraph(d_time_series, main = "Daily Maximum Temperature in Buffalo, NY") %>%
-  dyRangeSelector(dateWindow = c("2020-01-01", "2020-10-31"))
+  dyRangeSelector(dateWindow = c("2020-01-01", "2020-10-31")) %>%
+  dyOptions(axisLabelFontSize = 12)
+# Learned how to change font size with https://cran.r-project.org/web/packages/dygraphs/dygraphs.pdf and https://www.rdocumentation.org/packages/dygraphs/versions/1.1.1.6/topics/dyAxis
 ```
